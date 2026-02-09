@@ -1,0 +1,47 @@
+name: Deploy Frontend to Azure Storage Static Website
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "index.html"
+      - "style.css"
+      - "assets/**"
+      - ".github/workflows/frontend-deploy.yml"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+
+      - name: Upload to $web
+        run: |
+          az storage blob upload-batch \
+            --account-name "${{ secrets.STORAGE_ACCOUNT_NAME }}" \
+            --destination '$web' \
+            --source . \
+            --overwrite true \
+            --auth-mode login
+
+      # (Opcjonalnie) Purge Front Door cache - włączymy, gdy wpiszesz nazwy profilu/endpointu
+      # - name: Install Front Door extension
+      #   run: az extension add --name front-door --only-show-errors
+      #
+      # - name: Purge Front Door cache
+      #   run: |
+      #     az afd endpoint purge \
+      #       --resource-group "Resource_group_1_dev" \
+      #       --profile-name "<TWOJ_FRONT_DOOR_PROFILE_NAME>" \
+      #       --endpoint-name "<TWOJ_ENDPOINT_NAME>" \
+      #       --content-paths "/*"
