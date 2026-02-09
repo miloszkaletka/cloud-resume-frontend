@@ -1,25 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Miłosz Kaletka | Cloud Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-    <h1>Miłosz Kaletka</h1>
-    <p>Junior Cloud / DevOps Engineer</p>
+    <header class="site-header">
+        <div class="container header-grid">
+            <div>
+                <h1 class="name">Miłosz Kaletka</h1>
+                <p class="role">Junior Cloud / DevOps • Senior IT Support Engineer</p>
 
-    <h2>About me</h2>
-    <p>
-        I am building cloud projects on Microsoft Azure.
-        This resume is part of the Cloud Resume Challenge.
-    </p>
+                <p class="summary">
+                    I build projects in Microsoft Azure and automate DevOps-style deployments. This resume is part of
+                    the Cloud Resume Challenge (Azure).
+                </p>
 
-    <h2>Skills</h2>
-    <ul>
-        <li>Azure (Storage, Functions, CDN)</li>
-        <li>Git & GitHub</li>
-        <li>Python</li>
-        <li>CI/CD basics</li>
-    </ul>
+                <div class="chip-row">
+                    <span class="chip">Azure</span>
+                    <span class="chip">Linux</span>
+                    <span class="chip">GitHub Actions</span>
+                    <span class="chip">Python</span>
+                    <span class="chip">CI/CD</span>
+                </div>
+            </div>
+
+            <div class="card contact-card">
+                <h2 class="section-title">Contact</h2>
+                <ul class="contact-list">
+                    <li><strong>Email:</strong> <a href="mailto:twojmail@example.com">milosz.kaletka@gmail.com</a></li>
+                    <li><strong>GitHub:</strong> <a href="https://github.com/miloszkaletka" target="_blank"
+                            rel="noreferrer">github.com/miloszkaletka</a></li>
+                    <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/mi%C5%82osz-kaletka-a09b00267/"
+                            target="_blank" rel="noreferrer">LinkedIn Profile</a></li>
+                    <li><strong>Location:</strong> Poland, Kraków</li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="card">
+            <h2 class="section-title">Skills</h2>
+            <div class="grid-2">
+                <ul class="list">
+                    <li>Azure: Storage Static Website, basic security and cost management</li>
+                    <li>Git & GitHub: branching strategies, pull requests, commit hygiene</li>
+                    <li>Python: scripting and automation</li>
+                </ul>
+                <ul class="list">
+                    <li>CI/CD: pipeline fundamentals (GitHub Actions)</li>
+                    <li>HTTP/DNS: networking fundamentals and troubleshooting</li>
+                    <li>Service Desk / IT Support: ticket handling and escalations</li>
+                </ul>
+
+            </div>
+        </section>
+
+        <section class="card">
+            <h2 class="section-title">Projects</h2>
+
+            <div class="project">
+                <div class="project-head">
+                    <h3 class="project-title">Cloud Resume Challenge — Azure</h3>
+                    <a class="project-link" href="https://miloszcloudresume01.z36.web.core.windows.net/" target="_blank"
+                        rel="noreferrer">Live</a>
+                </div>
+                <p class="muted">
+                    Static website hosted on Azure Storage. Next steps include enabling CDN with HTTPS, adding a
+                    serverless backend using Azure Functions, and automating deployments with CI/CD.
+                </p>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2 class="section-title">Experience</h2>
+            <div class="item">
+                <h3 class="item-title">IT Support Engineer</h3>
+                <p class="muted">Supporting users, troubleshooting, escalations, working with processes and
+                    documentation.
+                </p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <footer class="footer">
+                <p class="muted">
+                    © <span id="year"></span> Miłosz Kaletka • Built on Azure 🚀
+                </p>
+
+                <p class="muted">
+                    Visitor count: <span id="visitor-count">Loading...</span>
+                </p>
+            </footer>
+        </footer>
+    </main>
+
+    <script>
+        // Year in footer
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Visitor counter
+        const apiUrl = "https://fn-cloud-resume-counter-cacwd0eaf8hrfvcr.westeurope-01.azurewebsites.net/api/counter";
+
+        async function loadVisitorCount() {
+            try {
+                const res = await fetch(apiUrl, { cache: "no-store" });
+                if (!res.ok) throw new Error("API response not OK: " + res.status);
+
+                const data = await res.json();
+                document.getElementById("visitor-count").textContent = data.count;
+            } catch (err) {
+                console.error(err);
+                document.getElementById("visitor-count").textContent = "N/A";
+            }
+        }
+
+        loadVisitorCount();
+    </script>
 </body>
+
 </html>
