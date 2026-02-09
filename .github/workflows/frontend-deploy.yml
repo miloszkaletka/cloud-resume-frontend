@@ -38,10 +38,11 @@ jobs:
       # - name: Install Front Door extension
       #   run: az extension add --name front-door --only-show-errors
       #
-      # - name: Purge Front Door cache
-      #   run: |
-      #     az afd endpoint purge \
-      #       --resource-group "Resource_group_1_dev" \
-      #       --profile-name "<TWOJ_FRONT_DOOR_PROFILE_NAME>" \
-      #       --endpoint-name "<TWOJ_ENDPOINT_NAME>" \
-      #       --content-paths "/*"
+      - name: Purge Azure Front Door cache
+        run: |
+          az afd endpoint purge \
+            --resource-group "Resource_group_1_dev" \
+            --profile-name "${{ secrets.AFD_PROFILE_NAME }}" \
+            --endpoint-name "${{ secrets.AFD_ENDPOINT_NAME }}" \
+            --content-paths "/*"
+
