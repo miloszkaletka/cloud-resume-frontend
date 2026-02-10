@@ -37,7 +37,6 @@ jobs:
       # (Opcjonalnie) Purge Front Door cache - włączymy, gdy wpiszesz nazwy profilu/endpointu
       # - name: Install Front Door extension
       #   run: az extension add --name front-door --only-show-errors
-      #
       - name: Purge Azure Front Door cache
         run: |
           az afd endpoint purge \
