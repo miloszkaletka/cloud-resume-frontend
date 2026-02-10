@@ -1,0 +1,206 @@
+/* ===== Base / Reset ===== */
+* {
+	box-sizing: border-box;
+}
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+	--bg: #0b1220;
+	--surface: rgba(255, 255, 255, 0.06);
+	--surface-2: rgba(255, 255, 255, 0.1);
+	--text: rgba(255, 255, 255, 0.92);
+	--muted: rgba(255, 255, 255, 0.7);
+	--border: rgba(255, 255, 255, 0.12);
+}
+
+body {
+	font-family:
+		Inter,
+		system-ui,
+		-apple-system,
+		Segoe UI,
+		Roboto,
+		Arial,
+		sans-serif;
+	background:
+		radial-gradient(
+			1200px 800px at 15% 10%,
+			rgba(96, 165, 250, 0.22),
+			transparent 60%
+		),
+		radial-gradient(
+			900px 700px at 85% 30%,
+			rgba(168, 85, 247, 0.18),
+			transparent 60%
+		),
+		var(--bg);
+	color: var(--text);
+	line-height: 1.6;
+}
+
+/* ===== Layout ===== */
+.container {
+	width: min(1100px, calc(100% - 32px));
+	margin: 0 auto;
+}
+
+.site-header {
+	padding: 48px 0 24px;
+}
+
+.header-grid {
+	display: grid;
+	grid-template-columns: 1.6fr 1fr;
+	gap: 20px;
+	align-items: start;
+}
+
+@media (max-width: 900px) {
+	.header-grid {
+		grid-template-columns: 1fr;
+	}
+	.site-header {
+		padding-top: 28px;
+	}
+}
+
+/* ===== Typography ===== */
+.name {
+	font-size: 40px;
+	margin: 0 0 6px;
+	letter-spacing: -0.02em;
+}
+
+.role {
+	margin: 0 0 14px;
+	color: var(--muted);
+	font-weight: 600;
+}
+
+.summary {
+	margin: 0 0 16px;
+	color: var(--muted);
+	max-width: 62ch;
+}
+
+.section-title {
+	margin: 0 0 12px;
+	font-size: 16px;
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, 0.86);
+}
+
+.muted {
+	color: var(--muted);
+	margin: 0;
+}
+
+/* ===== Components ===== */
+.card {
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: 16px;
+	padding: 18px;
+	backdrop-filter: blur(10px);
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.contact-card {
+	padding: 18px;
+}
+
+.contact-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: grid;
+	gap: 10px;
+}
+
+a {
+	color: rgba(147, 197, 253, 0.95);
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+
+.chip-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.chip {
+	display: inline-flex;
+	padding: 6px 10px;
+	border-radius: 999px;
+	background: var(--surface-2);
+	border: 1px solid var(--border);
+	color: rgba(255, 255, 255, 0.86);
+	font-size: 13px;
+}
+
+/* ===== Content blocks ===== */
+main.container {
+	padding: 10px 0 44px;
+	display: grid;
+	gap: 14px;
+}
+
+.grid-2 {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 16px;
+}
+@media (max-width: 900px) {
+	.grid-2 {
+		grid-template-columns: 1fr;
+	}
+}
+
+.list {
+	margin: 0;
+	padding-left: 18px;
+}
+.list li {
+	margin: 6px 0;
+}
+
+.project {
+	padding: 12px 0 0;
+}
+.project-head {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 12px;
+}
+.project-title {
+	margin: 0;
+	font-size: 18px;
+}
+.project-link {
+	font-size: 14px;
+	font-weight: 600;
+	padding: 6px 10px;
+	border-radius: 10px;
+	border: 1px solid var(--border);
+	background: var(--surface-2);
+}
+
+.item-title {
+	margin: 0 0 8px;
+	font-size: 18px;
+}
+
+/* ===== Footer ===== */
+.footer {
+	padding: 14px 2px 0;
+	text-align: center;
+}
