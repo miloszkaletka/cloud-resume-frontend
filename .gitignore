@@ -1,0 +1,14 @@
+# Python / venv / caches
+**/.venv/
+**/__pycache__/
+**/.pytest_cache/
+**/.python_packages/
+
+# Azure Functions local config (secrets)
+**/local.settings.json
+
+# VS Code
+**/.vscode/
+
+# Optional: screenshots (jeśli nie chcesz w repo)
+**/.screenshots/
