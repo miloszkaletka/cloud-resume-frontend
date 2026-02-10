@@ -47,3 +47,4 @@ def counter(req: func.HttpRequest) -> func.HttpResponse:
     )
 
 # CI backend deploy test
+# trigger backend redeploy
